@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Blog - LuxuryExpress</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/modal.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <style>
+      .blog-container {
+        max-width: 1100px;
+        margin: 3rem auto;
+        padding: 0 2rem;
+      }
+      .blog-post {
+        background: #fff;
+        border-radius: 10px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        margin-bottom: 2rem;
+        overflow: hidden;
+        transition: transform 0.3s;
+      }
+      .blog-post:hover {
+        transform: translateY(-5px);
+      }
+      .blog-post img {
+        width: 100%;
+        height: 300px;
+        object-fit: cover;
+      }
+      .blog-post-content {
+        padding: 1.5rem;
+      }
+      .blog-post-content h3 {
+        color: #0d7377;
+        margin-bottom: 0.5rem;
+      }
+      .blog-post-content p {
+        color: #555;
+        line-height: 1.7;
+        margin-bottom: 1rem;
+      }
+      .read-more {
+        color: #14a1a5;
+        font-weight: 600;
+        text-decoration: none;
+        transition: color 0.3s;
+      }
+      .read-more:hover {
+        color: #0d7377;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="wrap header-inner">
+        <a class="logo" href="index.html"
+          ><span class="logo-badge">LX</span> LuxuryExpress</a
+        >
+        <nav class="main-nav" aria-label="Main navigation">
+          <a href="index.html">Home</a>
+          <a href="shop.html">Shop</a>
+          <a href="blog.html" class="active">Blog</a>
+          <a href="about.html">About</a>
+          <a href="track.html">Track</a>
+          <a href="contact.html">Contact</a>
+        </nav>
+
+        <div class="header-actions">
+          <div class="search-wrap">
+            <input
+              id="searchInput"
+              type="search"
+              placeholder="Search products..."
+              aria-label="Search products"
+            />
+          </div>
+          <button id="themeToggle" class="icon-btn" aria-label="Toggle theme">
+            🌓
+          </button>
+          <a href="cart.html" class="cart-link" aria-label="Open cart"
+            >🛒 <span id="cartBadge" class="cart-badge">0</span></a
+          >
+        </div>
+      </div>
+    </header>
+
+    <section class="blog-container">
+      <div class="blog-post">
+        <img
+          src="https://images.unsplash.com/photo-1512436991641-6745cdb1723f?w=1000"
+          alt="Blog 1"
+        />
+        <div class="blog-post-content">
+          <h3>The Rise of Smart Fashion</h3>
+          <p>
+            Discover how technology is shaping the future of fashion, from
+            wearable tech to AI-driven styling.
+          </p>
+          <a href="#" class="read-more" data-post-id="1">Read More</a>
+        </div>
+      </div>
+      <div class="blog-post">
+        <img
+          src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=1000"
+          alt="Blog 2"
+        />
+        <div class="blog-post-content">
+          <h3>Top 5 Gadgets to Simplify Your Day</h3>
+          <p>
+            Explore innovative gadgets designed to boost productivity and
+            elevate your lifestyle in 2025.
+          </p>
+          <a href="#" class="read-more" data-post-id="2">Read More</a>
+        </div>
+      </div>
+      <div class="blog-post">
+        <img src="https://images.unsplash.com/photo-1521334884684-d80222895322?w=1000" alt="Blog 3" />
+        <div class="blog-post-content">
+          <h3>Styling Tips from the Pros</h3>
+          <p>Practical style advice to help you curate a capsule wardrobe that works for every season.</p>
+          <a href="#" class="read-more" data-post-id="3">Read More</a>
+        </div>
+      </div>
+      <div class="blog-post">
+        <img src="https://images.unsplash.com/photo-1503342452485-86f7f51f4d7b?w=1000" alt="Blog 4" />
+        <div class="blog-post-content">
+          <h3>Gifts That Impress</h3>
+          <p>A curated selection of premium gift ideas for every occasion and budget.</p>
+          <a href="#" class="read-more" data-post-id="4">Read More</a>
+        </div>
+      </div>
+      <div class="blog-post">
+        <img src="https://images.unsplash.com/photo-1503602642458-232111445657?w=1000" alt="Blog 5" />
+        <div class="blog-post-content">
+          <h3>Sustainable Luxury</h3>
+          <p>How brands are combining sustainability with premium design — what to look for as a shopper.</p>
+          <a href="#" class="read-more" data-post-id="5">Read More</a>
+        </div>
+      </div>
+      <div class="blog-post">
+        <img src="https://images.unsplash.com/photo-1495121605193-b116b5b09d54?w=1000" alt="Blog 6" />
+        <div class="blog-post-content">
+          <h3>Travel Essentials for 2025</h3>
+          <p>Pack smarter with these travel essentials that combine utility with style.</p>
+          <a href="#" class="read-more" data-post-id="6">Read More</a>
+        </div>
+      </div>
+    </section>
+
+    <script src="js/blog.js"></script>
+    <script>
+    // Initialize blog functionality
+    document.addEventListener('DOMContentLoaded', () => {
+      // Add click handlers to all read more links
+      document.querySelectorAll('.blog-post').forEach(post => {
+        const readMore = post.querySelector('.read-more');
+        const postId = readMore.getAttribute('data-post-id');
+        readMore.addEventListener('click', (e) => {
+          e.preventDefault();
+          showBlogModal(Number(postId));
+        });
+      });
+    });
+    </script>
+
+    <footer class="site-footer">
+      <div class="wrap footer-grid">
+        <div>
+          <h4>Company</h4>
+          <a href="about.html">About Us</a>
+          <a href="blog.html">Blog</a>
+          <a href="contact.html">Contact</a>
+        </div>
+        <div>
+          <h4>Support</h4>
+          <a href="#">FAQs</a>
+          <a href="#">Shipping</a>
+          <a href="#">Returns</a>
+        </div>
+        <div>
+          <h4>Subscribe</h4>
+          <div class="subscribe-row">
+            <input id="subEmail" placeholder="Email address" />
+            <button id="subBtn" class="btn">Subscribe</button>
+          </div>
+        </div>
+      </div>
+      <p class="copyright">© <span id="year"></span> LuxuryExpress. All rights reserved.</p>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", ()=>{ if(window.updateCartCount) updateCartCount(); });
+    </script>
+  </body>
+</html>

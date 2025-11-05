@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>LuxuryExpress — Home</title>
+    <meta
+      name="description"
+      content="LuxuryExpress — curated marketplace. Investor demo with live products, testimonials, map, tracking and persistent cart."
+    />
+
+    <!-- External CSS -->
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/modal.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="wrap header-inner">
+        <a class="logo" href="index.html"
+          ><span class="logo-badge">LX</span> LuxuryExpress</a
+        >
+        <nav class="main-nav" aria-label="Main navigation">
+          <a href="index.html" class="active">Home</a>
+          <a href="shop.html">Shop</a>
+          <a href="blog.html">Blog</a>
+          <a href="about.html">About</a>
+          <a href="track.html">Track</a>
+          <a href="contact.html">Contact</a>
+        </nav>
+
+        <div class="header-actions">
+          <div class="search-wrap">
+            <input
+              id="searchInput"
+              type="search"
+              placeholder="Search products..."
+              aria-label="Search products"
+            />
+          </div>
+          <button id="themeToggle" class="icon-btn" aria-label="Toggle theme">
+            🌓
+          </button>
+          <a href="cart.html" class="cart-link" aria-label="Open cart"
+            >🛒 <span id="cartBadge" class="cart-badge">0</span></a
+          >
+        </div>
+      </div>
+    </header>
+
+    <main class="wrap main">
+      <section class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow">Premium • Curated • Fast</p>
+          <h1>Luxury goods — curated collections, designed for conversion.</h1>
+          <p class="lead">
+            Investor-ready front-end with live product API, testimonials,
+            tracking & map. Production-ready structure with external CSS/JS for
+            maintainability.
+          </p>
+          <div class="cta-row">
+            <a href="shop.html" class="btn primary">Shop Now</a>
+            <a href="about.html" class="btn ghost">Our Story</a>
+          </div>
+
+          <ul class="features-inline">
+            <li>Free shipping over $99</li>
+            <li>7-day returns</li>
+            <li>24/7 support</li>
+          </ul>
+        </div>
+
+        <aside class="hero-aside">
+          <div class="mini-cart card" id="miniCart">
+            <h4>Your cart</h4>
+            <div id="cartList" class="cart-list">—</div>
+            <div class="cart-footer">
+              <div>
+                <div class="muted">Subtotal</div>
+                <div id="subtotal">$0.00</div>
+              </div>
+              <div>
+                <button id="checkoutBtn" class="btn primary small">
+                  Checkout
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="card track-card">
+            <h4>Track order</h4>
+            <p class="muted">Enter tracking code to view status (demo).</p>
+            <div class="track-row">
+              <input id="trackInput" placeholder="e.g. LX-2025-0001" />
+              <button id="trackBtn" class="btn small">Track</button>
+            </div>
+            <div id="trackResult" class="muted" aria-live="polite"></div>
+          </div>
+        </aside>
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <h3>Featured products</h3>
+          <a href="shop.html" class="muted">See all →</a>
+        </div>
+        <div id="productGrid" class="products-grid">Loading products…</div>
+      </section>
+
+      <section class="section testimonials">
+        <h3>What customers say</h3>
+        <div id="testGrid" class="test-grid">Loading testimonials…</div>
+      </section>
+
+      <section class="section map-section">
+        <div class="map-copy">
+          <h3>Visit our demo office</h3>
+          <p class="muted">
+            We included a live map for Lagos so investors can visualise
+            logistics. Replace iframe with dynamic map if needed.
+          </p>
+        </div>
+        <div class="map-frame">
+          <!-- Lagos coordinates: Ikeja approximate -->
+          <iframe
+            title="LuxuryExpress office — Lagos"
+            src="https://www.google.com/maps?q=Ikeja%2C%20Lagos%2C%20Nigeria&output=embed"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+          ></iframe>
+        </div>
+      </section>
+
+      <section class="section investor-callout">
+        <div>
+          <h3>Investor demo — roadmap & metrics</h3>
+          <p class="muted">
+            Include MRR, CAC, LTV and GTM in your pitch. This front-end can be
+            wired quickly to any headless commerce or e-commerce backend
+            (Shopify, Medusa, Commerce.js, or your own API).
+          </p>
+        </div>
+        <div>
+          <input id="notifyEmail" placeholder="Your email for investor pack" />
+          <button id="notifyBtn" class="btn primary">Request pack</button>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="wrap footer-grid">
+        <div>
+          <div class="logo">LuxuryExpress</div>
+          <p class="muted">
+            Curated marketplace demo — investor-ready, built for conversion and
+            clarity.
+          </p>
+        </div>
+
+        <div>
+          <h4>Company</h4>
+          <a href="about.html">About</a>
+          <a href="#">Careers</a>
+        </div>
+
+        <div>
+          <h4>Support</h4>
+          <a href="contact.html">Contact</a>
+          <a href="#">FAQ</a>
+        </div>
+
+        <div>
+          <h4>Subscribe</h4>
+          <p class="muted">Get updates on launches & investor notes.</p>
+          <div class="subscribe-row">
+            <input id="subEmail" placeholder="Email address" />
+            <button id="subBtn" class="btn">Subscribe</button>
+          </div>
+          <div class="socials muted">Twitter · LinkedIn · Instagram</div>
+        </div>
+      </div>
+
+      <div class="wrap small muted copyright">
+        © <span id="year"></span> LuxuryExpress — Demo
+      </div>
+    </footer>
+
+    <!-- External JS -->
+    <script src="js/main.js" defer></script>
+  </body>
+</html>

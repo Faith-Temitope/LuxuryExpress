@@ -1,0 +1,4 @@
+[
+  { "id": 1, "title": "Luxury Handbag", "price": 249.99, "image": "images/products/1.jpg" },
+  { "id": 2, "title": "Smartwatch Elite", "price": 199.99, "image": "images/products/2.jpg" }
+]

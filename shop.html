@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Shop | LuxuryExpress</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/modal.css" />
+    <script defer src="js/main.js"></script>
+  </head>
+  <body>
+    <!-- HEADER -->
+    <header class="site-header">
+      <div class="wrap header-inner">
+        <a class="logo" href="index.html"
+          ><span class="logo-badge">LX</span> LuxuryExpress</a
+        >
+        <nav class="main-nav" aria-label="Main navigation">
+          <a href="index.html">Home</a>
+          <a href="shop.html" class="active">Shop</a>
+          <a href="blog.html">Blog</a>
+          <a href="about.html">About</a>
+          <a href="track.html">Track</a>
+          <a href="contact.html">Contact</a>
+        </nav>
+
+        <div class="header-actions">
+          <div class="search-wrap">
+            <input
+              id="searchInput"
+              type="search"
+              placeholder="Search products..."
+              aria-label="Search products"
+            />
+          </div>
+          <button id="themeToggle" class="icon-btn" aria-label="Toggle theme">
+            🌓
+          </button>
+          <a href="cart.html" class="cart-link" aria-label="Open cart"
+            >🛒 <span id="cartBadge" class="cart-badge">0</span></a
+          >
+        </div>
+      </div>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero wrap">
+      <div class="hero-copy">
+        <h1>Our Collection</h1>
+        <p class="lead">
+          Explore premium products curated for your comfort and style.
+        </p>
+      </div>
+    </section>
+
+    <!-- FILTER BAR -->
+    <section class="wrap" style="margin-top: 1rem">
+      <div
+        class="filter-bar"
+        style="
+          display: flex;
+          flex-wrap: wrap;
+          gap: 1rem;
+          align-items: center;
+          justify-content: space-between;
+        "
+      >
+        <input
+          type="text"
+          id="shopFilter"
+          placeholder="Search products..."
+          style="
+            flex: 1;
+            min-width: 200px;
+            padding: 0.5rem;
+            border: 1px solid var(--color-border);
+            border-radius: 6px;
+          "
+        />
+        <select
+          id="categorySelect"
+          style="
+            padding: 0.5rem;
+            border: 1px solid var(--color-border);
+            border-radius: 6px;
+          "
+        >
+          <option value="all">All Categories</option>
+        </select>
+        <select
+          id="sortSelect"
+          style="
+            padding: 0.5rem;
+            border: 1px solid var(--color-border);
+            border-radius: 6px;
+          "
+        >
+          <option value="default">Sort by</option>
+          <option value="low-high">Price: Low to High</option>
+          <option value="high-low">Price: High to Low</option>
+        </select>
+      </div>
+    </section>
+
+    <!-- LOADING PLACEHOLDERS -->
+    <section class="wrap" id="loading-shimmer" style="margin-top: 2rem">
+      <div class="products-grid">
+        <div class="product-card shimmer"></div>
+        <div class="product-card shimmer"></div>
+        <div class="product-card shimmer"></div>
+        <div class="product-card shimmer"></div>
+      </div>
+    </section>
+
+    <!-- PRODUCTS GRID -->
+    <section class="wrap" style="margin-top: 2rem">
+      <div id="shop-grid" class="products-grid"></div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+      <div class="wrap footer-grid">
+        <div>
+          <h4>Company</h4>
+          <a href="about.html">About Us</a>
+          <a href="blog.html">Blog</a>
+          <a href="contact.html">Contact</a>
+        </div>
+        <div>
+          <h4>Support</h4>
+          <a href="#">FAQs</a>
+          <a href="#">Shipping</a>
+          <a href="#">Returns</a>
+        </div>
+        <div>
+          <h4>Subscribe</h4>
+          <div class="subscribe-row">
+            <input type="email" placeholder="Your email" />
+            <button class="btn primary">Join</button>
+          </div>
+        </div>
+      </div>
+      <p class="copyright">
+        &copy; <span id="year"></span> LuxuryExpress. All rights reserved.
+      </p>
+    </footer>
+
+    <script>
+      // Fetch products from FakeStore API
+      const shopGrid = document.getElementById("shop-grid");
+      const shimmer = document.getElementById("loading-shimmer");
+      const categorySelect = document.getElementById("categorySelect");
+      const sortSelect = document.getElementById("sortSelect");
+      const searchInput = document.getElementById("searchInput");
+
+      let allProducts = [];
+
+      async function loadShopProducts() {
+        shimmer.style.display = "block";
+        try {
+          const res = await fetch("https://fakestoreapi.com/products");
+          const data = await res.json();
+          allProducts = data;
+          populateCategories(data);
+          renderShopProducts(data);
+        } catch (err) {
+          console.error("Error fetching products:", err);
+          shopGrid.innerHTML =
+            "<p>Failed to load products. Try again later.</p>";
+        } finally {
+          shimmer.style.display = "none";
+        }
+      }
+
+      function populateCategories(products) {
+        const categories = [...new Set(products.map((p) => p.category))];
+        categories.forEach((cat) => {
+          const opt = document.createElement("option");
+          opt.value = cat;
+          opt.textContent = cat.charAt(0).toUpperCase() + cat.slice(1);
+          categorySelect.appendChild(opt);
+        });
+      }
+
+      function renderShopProducts(products) {
+        shopGrid.innerHTML = products
+          .map(
+            (p) => `
+        <div class="product-card fade-in" data-product-id="${
+          p.id
+        }" role="button" tabindex="0">
+          <img src="${p.image}" alt="${p.title}">
+          <h4>${p.title}</h4>
+          <p>$${p.price.toFixed(2)}</p>
+          <button class="btn primary add-to-cart" data-id="${
+            p.id
+          }" data-addid="${p.id}" data-title="${p.title}" data-price="${
+              p.price
+            }" data-image="${p.image}">Add to Cart</button>
+        </div>`
+          )
+          .join("");
+      }
+
+      categorySelect.addEventListener("change", () => {
+        const val = categorySelect.value;
+        let filtered = allProducts;
+        if (val !== "all")
+          filtered = allProducts.filter((p) => p.category === val);
+        renderShopProducts(filtered);
+      });
+
+      sortSelect.addEventListener("change", () => {
+        let sorted = [...allProducts];
+        if (sortSelect.value === "low-high")
+          sorted.sort((a, b) => a.price - b.price);
+        if (sortSelect.value === "high-low")
+          sorted.sort((a, b) => b.price - a.price);
+        renderShopProducts(sorted);
+      });
+
+      const shopFilter = document.getElementById("shopFilter");
+      shopFilter?.addEventListener("input", (e) => {
+        const term = e.target.value.toLowerCase();
+        const filtered = allProducts.filter((p) =>
+          p.title.toLowerCase().includes(term)
+        );
+        renderShopProducts(filtered);
+      });
+
+      document.getElementById("year").textContent = new Date().getFullYear();
+
+      // Shimmer CSS effect
+      const shimmerStyle = document.createElement("style");
+      shimmerStyle.textContent = `
+      .shimmer {
+        height: 300px;
+        background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 37%, #f0f0f0 63%);
+        background-size: 400% 100%;
+        animation: shimmer 1.2s infinite;
+        border-radius: 12px;
+      }
+      @keyframes shimmer {
+        0% { background-position: -400px 0; }
+        100% { background-position: 400px 0; }
+      }
+    `;
+      document.head.appendChild(shimmerStyle);
+
+      // Make product cards clickable (open modal) and keyboard accessible
+      document.addEventListener("click", (e) => {
+        // clicks on product-card (not on buttons/links)
+        const card = e.target.closest(".product-card");
+        if (!card) return;
+        if (e.target.closest("button") || e.target.closest("a")) return; // let inner controls handle
+        const id =
+          +card.dataset.productId || +card.getAttribute("data-product-id");
+        if (id && window.LX && LX.showProductModal) {
+          LX.showProductModal(id);
+        }
+      });
+
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          const el = document.activeElement;
+          if (el && el.classList && el.classList.contains("product-card")) {
+            e.preventDefault();
+            const id =
+              +el.dataset.productId || +el.getAttribute("data-product-id");
+            if (id && window.LX && LX.showProductModal) LX.showProductModal(id);
+          }
+        }
+      });
+
+      // delegate add-to-cart buttons to use the shared cart API when available
+      document.addEventListener("click", (e) => {
+        const btn = e.target.closest(".add-to-cart");
+        if (!btn) return;
+        const p = {
+          id: +btn.getAttribute("data-id") || +btn.getAttribute("data-addid"),
+          title: btn.getAttribute("data-title"),
+          price: +btn.getAttribute("data-price"),
+          image: btn.getAttribute("data-image"),
+        };
+        if (window.LX && LX.addToCart) LX.addToCart(p);
+        else alert("Cart not ready");
+      });
+
+      loadShopProducts();
+    </script>
+  </body>
+</html>

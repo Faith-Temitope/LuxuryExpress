@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Cart — LuxuryExpress</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="wrap header-inner">
+        <a class="logo" href="index.html"
+          ><span class="logo-badge">LX</span> LuxuryExpress</a
+        >
+        <nav class="main-nav" aria-label="Main navigation">
+          <a href="index.html">Home</a>
+          <a href="shop.html">Shop</a>
+          <a href="blog.html">Blog</a>
+          <a href="about.html">About</a>
+          <a href="track.html">Track</a>
+          <a href="contact.html">Contact</a>
+        </nav>
+
+        <div class="header-actions">
+          <div class="search-wrap">
+            <input
+              id="searchInput"
+              type="search"
+              placeholder="Search products..."
+              aria-label="Search products"
+            />
+          </div>
+          <button id="themeToggle" class="icon-btn" aria-label="Toggle theme">
+            🌓
+          </button>
+          <a href="cart.html" class="cart-link" aria-label="Open cart"
+            >🛒 <span id="cartBadge" class="cart-badge">0</span></a
+          >
+        </div>
+      </div>
+    </header>
+
+    <main class="container">
+      <section class="cart-container" style="margin-top: 1.25rem">
+        <h2>Your Cart</h2>
+        <div id="cartItems"></div>
+        <div class="cart-summary" style="margin-top: 1rem">
+          <h3>Total: <span id="cartTotal">$0.00</span></h3>
+          <div
+            style="
+              display: flex;
+              gap: 0.8rem;
+              justify-content: flex-end;
+              margin-top: 0.8rem;
+            "
+          >
+            <button class="btn btn-ghost" id="clearCartBtn">Clear</button>
+            <button class="btn btn-primary" id="checkoutBtn">
+              Proceed to Checkout
+            </button>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="wrap footer-grid">
+        <div>
+          <h4>Company</h4>
+          <a href="about.html">About Us</a>
+          <a href="blog.html">Blog</a>
+          <a href="contact.html">Contact</a>
+        </div>
+        <div>
+          <h4>Support</h4>
+          <a href="#">FAQs</a>
+          <a href="#">Shipping</a>
+          <a href="#">Returns</a>
+        </div>
+        <div>
+          <h4>Subscribe</h4>
+          <div class="subscribe-row">
+            <input id="subEmail" placeholder="Email address" />
+            <button id="subBtn" class="btn">Subscribe</button>
+          </div>
+        </div>
+      </div>
+      <p class="copyright">
+        © <span id="year"></span> LuxuryExpress. All rights reserved.
+      </p>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        // use exposed API
+        if (window.updateCartCount) updateCartCount();
+        if (window.renderCartPage) renderCartPage();
+
+        const checkout = document.getElementById("checkoutBtn");
+        checkout &&
+          checkout.addEventListener("click", () => {
+            const cart = (window.LX && LX.loadCart && LX.loadCart()) || [];
+            if (cart.length === 0) {
+              (window.showToast || window.toast || (() => {}))("Cart is empty");
+              return;
+            }
+            // Demo checkout flow
+            (window.showToast || window.toast || (() => {}))("Starting demo checkout...");
+          });
+
+        const clearBtn = document.getElementById("clearCartBtn");
+        clearBtn &&
+          clearBtn.addEventListener("click", () => {
+            if (window.LX && LX.clearCart) {
+              LX.clearCart();
+              (window.showToast || window.toast || (() => {}))("Cart cleared");
+            }
+          });
+      });
+    </script>
+  </body>
+</html>

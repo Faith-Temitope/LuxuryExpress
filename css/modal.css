@@ -1,0 +1,206 @@
+/* Modal styles */
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal {
+  background: var(--color-bg);
+  border-radius: 12px;
+  padding: 1.5rem;
+  max-width: 90%;
+  width: 800px;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.modal-close {
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
+  border: none;
+  background: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  opacity: 0.7;
+  transition: opacity 0.2s;
+}
+
+.modal-close:hover {
+  opacity: 1;
+}
+
+.product-modal {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+
+.product-modal img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  max-height: 400px;
+  object-fit: cover;
+}
+
+.product-modal h2 {
+  margin-bottom: 0.5rem;
+  color: var(--color-primary);
+}
+
+.product-modal .price {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 1rem 0;
+}
+
+.product-modal .description {
+  color: var(--color-muted);
+  margin-bottom: 1rem;
+}
+
+.product-modal .attributes {
+  margin: 1rem 0;
+  display: grid;
+  gap: 0.5rem;
+}
+
+.product-modal .attribute {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.product-modal .attribute-label {
+  color: var(--color-muted);
+  min-width: 100px;
+}
+
+.related-products {
+  margin-top: 2rem;
+  border-top: 1px solid var(--color-border);
+  padding-top: 1rem;
+}
+
+.related-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.related-product {
+  text-decoration: none;
+  color: inherit;
+}
+
+.related-product img {
+  width: 100%;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 6px;
+}
+
+.related-product h4 {
+  margin: 0.5rem 0;
+  font-size: 0.9rem;
+}
+
+.related-product .price {
+  color: var(--color-muted);
+  font-size: 0.9rem;
+}
+
+/* Blog modal specific styles */
+.blog-modal {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.blog-hero {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+}
+
+.blog-meta {
+  display: flex;
+  gap: 1rem;
+  color: var(--color-muted);
+  margin-bottom: 0.5rem;
+}
+
+.blog-content {
+  line-height: 1.7;
+}
+
+.blog-content h2 {
+  margin-bottom: 1.5rem;
+  color: var(--color-primary);
+}
+
+.blog-content h4 {
+  margin: 1.5rem 0 0.5rem;
+}
+
+.blog-content ul {
+  padding-left: 1.5rem;
+  margin: 0.5rem 0;
+}
+
+.related-posts {
+  margin-top: 3rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--color-border);
+}
+
+.related-posts .related-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+.related-post {
+  text-decoration: none;
+  color: inherit;
+}
+
+.related-post img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 6px;
+}
+
+.related-post h4 {
+  margin: 0.5rem 0;
+  color: var(--color-primary);
+}
+
+.related-post .date {
+  color: var(--color-muted);
+  font-size: 0.9rem;
+}
+
+@media (max-width: 768px) {
+  .product-modal {
+    grid-template-columns: 1fr;
+  }
+  
+  .blog-hero {
+    height: 200px;
+  }
+}

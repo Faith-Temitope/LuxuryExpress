@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Track Order | LuxuryExpress</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <script defer src="js/main.js"></script>
+    <script
+      src="https://kit.fontawesome.com/a2e0f9e64d.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+
+  <body>
+    <header class="site-header">
+      <div class="wrap header-inner">
+        <a class="logo" href="index.html"
+          ><span class="logo-badge">LX</span> LuxuryExpress</a
+        >
+        <nav class="main-nav" aria-label="Main navigation">
+          <a href="index.html">Home</a>
+          <a href="shop.html">Shop</a>
+          <a href="blog.html">Blog</a>
+          <a href="about.html">About</a>
+          <a href="contact.html">Contact</a>
+          <a href="track.html" class="active">Track</a>
+        </nav>
+
+        <div class="header-actions">
+          <div class="search-wrap">
+            <input
+              id="searchInput"
+              type="search"
+              placeholder="Search products..."
+              aria-label="Search products"
+            />
+          </div>
+          <button id="themeToggle" class="icon-btn" aria-label="Toggle theme">
+            🌓
+          </button>
+          <a href="cart.html" class="cart-link" aria-label="Open cart"
+            >🛒 <span id="cartBadge" class="cart-badge">0</span></a
+          >
+        </div>
+      </div>
+    </header>
+
+    <section class="track-section fade-in wrap">
+      <div class="track-content" style="max-width: 800px; margin: 0 auto; padding: 2rem;">
+        <h1>Track Your Order</h1>
+        <p style="margin: 1rem 0;">Enter your tracking code to see the current status of your delivery.</p>
+
+        <div class="track-row" style="margin: 2rem 0;">
+          <input id="trackInput" placeholder="e.g. LX-2025-0001" style="flex: 1; min-width: 200px; padding: 0.8rem;" />
+          <button id="trackBtn" class="btn small" style="margin-left: 1rem;">Track</button>
+        </div>
+        <div id="trackResult" class="muted" aria-live="polite" style="min-height: 2rem;"></div>
+
+        <div class="map-section" style="margin-top: 3rem;">
+          <div class="map-copy" style="padding: 1.5rem 2rem;">
+            <h3>Current Location</h3>
+            <p class="muted" style="margin-top: 0.5rem;">Map shows a demo location (Ikeja, Lagos). Replace iframe or use dynamic map if you have an API key.</p>
+          </div>
+          <div class="map-frame" style="padding: 1rem;">
+            <iframe title="LuxuryExpress office — Lagos" 
+                    src="https://www.google.com/maps?q=Ikeja%2C%20Lagos%2C%20Nigeria&output=embed" 
+                    loading="lazy" 
+                    referrerpolicy="no-referrer-when-downgrade"
+                    style="border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);"></iframe>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="site-footer">
+      <div class="wrap footer-grid">
+        <div>
+          <h4>Company</h4>
+          <a href="about.html">About Us</a>
+          <a href="blog.html">Blog</a>
+          <a href="contact.html">Contact</a>
+        </div>
+        <div>
+          <h4>Support</h4>
+          <a href="#">FAQs</a>
+          <a href="#">Shipping</a>
+          <a href="#">Returns</a>
+        </div>
+        <div>
+          <h4>Subscribe</h4>
+          <div class="subscribe-row">
+            <input id="subEmail" placeholder="Email address" />
+            <button id="subBtn" class="btn">Subscribe</button>
+          </div>
+        </div>
+      </div>
+      <p class="copyright">© <span id="year"></span> LuxuryExpress. All rights reserved.</p>
+    </footer>
+  </body>
+</html>
